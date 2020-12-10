@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}"> 
+    <link rel="stylesheet" href="{{url_for('static', filename='fontawesome-free-5.15.1-web/css/all.min.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon1.ico')}}">
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+        });
+    });
+    </script>
+
+    <title>{%block title%}{%endblock%}</title>
+</head>
+<body>
+    {%block body%}{%endblock%}
+</body>
+</html>

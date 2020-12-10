@@ -20,3 +20,8 @@ home/report.txt
 home/가구원수별 가구수(구별)2016_2018.txt
 home/가구원수별 가구수(구별).txt
 home/data/
+fontawesome-free-5.15.1-web/
+js/
+css/
+img/*
+!/img/favicon.ico
