@@ -23,5 +23,5 @@ home/data/
 fontawesome-free-5.15.1-web/
 js/
 css/
-img/*
+img/
 !/img/favicon.ico
