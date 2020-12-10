@@ -1,0 +1,22 @@
+01.DB/mysql.ipynb
+01.DB/TEST.db
+*.db
+samples/
+03.pandas/population_age_2020.csv
+cafe_2year.csv
+doctor_2019.csv
+doctor2.csv
+06.restAPI/roadapikey.txt
+06.restAPI/openweatherkey.txt
+06.restAPI/kakaomapkey.txt
+chromedriver.exe
+05.Crawling/station_data
+05.Crawling/kmap_key.txt
+05.Crawling/map.html
+05.Crawling/02. skorea_municipalities_geo_simple.json
+.vscode/settings.json
+home/서울시 자치구 년도별 CCTV 설치 현황(2011년 이전_2018년).xlsx
+home/report.txt
+home/가구원수별 가구수(구별)2016_2018.txt
+home/가구원수별 가구수(구별).txt
+home/data/
