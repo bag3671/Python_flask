@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>프로젝트</title>
+    {% endif %}
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fontawesome-free-5.15.1-web/css/all.min.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon1.ico')}}">
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    {% block stylesheet %}{% endblock %}
+</head>
+
+<body style="padding-top: 75px;">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light mb-4">
+            <a class="navbar-brand" href="">
+                <img src="{{url_for('static', filename='img/cica.jpg')}}" alt="logo"
+                    style="height:40px;margin-left: 40px;margin-right: 50px;">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto mx-auto pr-5">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">데이터 분석</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">인공지능</a>
+                    </li>
+                </ul>
+            </div>
+            <img src="http://openweathermap.org/img/w/{{weather[0]['icon']}}.png" alt="weather">{{weather[1]}}°C <br>
+            {{weather[2]}}°C/{{weather[3]}}°C
+        </nav>
+    </header>
+
+    <main class pt-5>
+        <div class="row">
+            <div class="col-2 border-right">
+                <ul class="nav flex-column nav-pills text-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if menu.se %}active{% endif %}" data-toggle="dropdown"
+                            href="#">서울특별시</a>
+                        <div class="dropdown-menu text-center float-center">
+                            <a class="dropdown-item" href="/park">공원</a>
+                            <a class="dropdown-item" href="#">범죄</a>
+                            <a class="dropdown-item" href="#">CCTV</a>
+                        </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if menu.co %}active{% endif %}" data-toggle="dropdown"
+                            href="#">코로나-19</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">전국</a>
+                            <a class="dropdown-item" href="#">광역시도별</a>
+                            <a class="dropdown-item" href="#">서울 자치구별</a>
+                        </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if menu.cg %}active{% endif %}" data-toggle="dropdown"
+                            href="#">카토그램</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">인구소멸위기</a>
+                            <a class="dropdown-item" href="#">커피지수</a>
+                        </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if menu.cr %}active{% endif %}" data-toggle="dropdown"
+                            href="#">크롤링</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">샌드위치</a>
+                            <a class="dropdown-item" href="#">주유소</a>
+                        </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item">
+                        <a class="nav-link {% if menu.st %}active{% endif %}"
+                            href="{% if menu.st %}#{% else %}#{% endif %}">주가 예측</a>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if menu.wc %}active{% endif %}" data-toggle="dropdown"
+                            href="#">워드 클라우드</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">여친 선물</a>
+                            <a class="dropdown-item" href="#">경제 뉴스</a>
+                            <a class="dropdown-item" href="#">스포츠 뉴스</a>
+                        </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                </ul>
+            </div>
+            <div class="col">
+                <h1 class="text-center">{% block title %}{% endblock %} {% if subtitle %}-{% endif %}
+                    {% block subtitle %}{% endblock %}</h1>
+                <hr>
+                <div class="row">
+                <div class="col-2"></div>
+                <div class="col">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-2"></div>
+            </div>
+            </div>
+        </div>
+    </main>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
