@@ -1,0 +1,26 @@
+{% extends '09.layout.html' %}
+{%block title%}서울시{% endblock %}
+{%block subtitle%}공원{% endblock %}
+{% block content %}
+<div class="row">
+    
+        <table>
+            <tr>
+                <td>
+                    <img src="{{url_for('static', filename='img/구면적대비 공원면적 TOP10.png', q=mtime)}}"
+                            width="500" alt="주가 예측 이미지">
+                </td>
+                <td>
+                    <img src="{{url_for('static', filename='img/인구수대비 공원면적.png', q=mtime)}}"
+                            width="500" alt="주가 예측 이미지">
+                </td>
+            </tr>
+            <tr >
+                <td colspan="2" class="text-center">
+                    <button type="button" class="btn btn-outline-primary" onclick='location.href="./static/data/park_map.html"'>인당면적비와 공원크기 지도</a></button>
+                </td>
+            </tr>
+        </table>
+    
+</div>   
+{% endblock %}
