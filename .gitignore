@@ -26,3 +26,4 @@ css/
 img/
 !/img/favicon.ico
 01_flask/static/data/openweatherkey.txt
+openweatherkey.txt

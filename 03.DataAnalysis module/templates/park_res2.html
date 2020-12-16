@@ -1,0 +1,19 @@
+{% extends '09.layout.html' %}
+{%block title%}서울시{% endblock %}
+{%block subtitle%}공원{% endblock %}
+{% block content %}
+<div class="row">
+   
+    <table class="table table-borderless" style="text-align: center;">
+        <tr style="text-align: center;"><td></td><td><h3>{{gu_name}} 공원</h3></td></tr>
+        <hr>
+        <tr></tr>
+        <tr>
+            <td></td>
+            <td>
+        <iframe src="{{url_for('static', filename='data/park_map.html',q=mtime)}}"
+        frameborder="1" width="800" height="640"></iframe>
+    </td></tr>
+    </table>
+</div>
+{% endblock %}
