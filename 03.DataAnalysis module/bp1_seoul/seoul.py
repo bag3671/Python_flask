@@ -107,3 +107,34 @@ def park_gu(option):
     # option_dict = {'area':'공원면적', 'count':'공원수', 'area_ratio':'공원면적 비율', 'per_person':'인당 공원면적'}
     return render_template('park_gu.html', menu=menu, weather=get_gangseo_weather(),
                             option=option, mtime=mtime)
+@seoul_bp.route('/crime/<option>')
+def crime(option):
+    menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
+    crime = pd.read_csv('./static/data/crime.csv', index_col='구별')
+    police = pd.read_csv('./static/data/police.csv')
+    geo_str = json.load(open('./static/data/02. skorea_municipalities_geo_simple.json',
+                         encoding='utf8'))
+    option_dict = {'crime':'범죄', 'murder':'살인', 'rob':'강도', 'rape':'강간', 'thief':'절도', 'violence':'폭력',
+                   'arrest':'검거율', 'a_murder':'살인검거율', 'a_rob':'강도검거율', 'a_rape':'강간검거율', 
+                   'a_thief':'절도검거율', 'a_violence':'폭력검거율'}
+    current_app.logger.debug(option_dict[option])
+
+    map = folium.Map(location=[37.5502, 126.982], zoom_start=11)
+    if option in ['crime', 'murder', 'rob', 'rape', 'thief', 'violence']:
+        map.choropleth(geo_data = geo_str, data = crime[option_dict[option]],
+               columns = [crime.index, crime[option_dict[option]]],
+               fill_color = 'PuRd', key_on = 'feature.id')
+    else:
+        map.choropleth(geo_data = geo_str, data = crime[option_dict[option]],
+               columns = [crime.index, crime[option_dict[option]]],
+               fill_color = 'YlGnBu', key_on = 'feature.id')
+        for i in police.index:
+            folium.CircleMarker([police.lat[i], police.lng[i]], radius=10,
+                                tooltip=police['관서명'][i],
+                                color='crimson', fill_color='crimson').add_to(map)
+
+    html_file = os.path.join(current_app.root_path, 'static/img/crime.html')
+    map.save(html_file)
+    mtime = int(os.stat(html_file).st_mtime)
+    return render_template('crime.html', menu=menu, weather=get_gangseo_weather(),
+                            option=option, option_dict=option_dict, mtime=mtime)
