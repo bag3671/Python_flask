@@ -15,7 +15,7 @@ def get_weather_main():
         weather = session['weather']
     except:
         current_app.logger.info("get new weather info")
-        weather = get_weather()
+        weather = get_gangseo_weather()
         session['weather'] = weather
         session.permanent = True
         current_app.permanent_session_lifetime = timedelta(minutes=60)
