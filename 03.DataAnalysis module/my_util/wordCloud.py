@@ -68,16 +68,17 @@ def sports_wordCloud():
     for event in events:
         url = f'https://sports.news.naver.com/{event}/news/index.nhn?page=1&isphoto=N'
         driver.get(url)
-        while True:
-            paginate = driver.find_element_by_css_selector('.paginate')
-            pagelist = paginate.find_elements_by_css_selector('a')
-            if driver.find_elements_by_css_selector('.content_area > #_pageList > a')[-1].text != '다음':
+        if driver.find_elements_by_css_selector('.content_area > #_pageList > a'):
+            while True:
+                paginate = driver.find_element_by_css_selector('.paginate')
+                pagelist = paginate.find_elements_by_css_selector('a')
+                if driver.find_elements_by_css_selector('.content_area > #_pageList > a')[-1].text != '다음':
+                    pagelist[-1].click()
+                    break
                 pagelist[-1].click()
-                break
-            pagelist[-1].click()
-            time.sleep(1)
+                time.sleep(1)  
         time.sleep(1)
-        endpage = driver.find_element_by_css_selector('#_pageList > strong').text
+        endpage = driver.find_element_by_css_selector('#_pageList > strong').text if driver.find_elements_by_css_selector('.content_area > #_pageList > a') else 1
         print(endpage)
         for page in range(1,int(endpage)+1):
             url = f'https://sports.news.naver.com/{event}/news/index.nhn?page={page}&isphoto=N'
