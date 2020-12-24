@@ -104,9 +104,9 @@ def park_gu(option):
     html_file = os.path.join(current_app.root_path, 'static/img/park_gu.html')
     map.save(html_file)
     mtime = int(os.stat(html_file).st_mtime)
-    # option_dict = {'area':'공원면적', 'count':'공원수', 'area_ratio':'공원면적 비율', 'per_person':'인당 공원면적'}
+    option_dict = {'area':'공원면적', 'count':'공원수', 'area_ratio':'공원면적 비율', 'per_person':'인당 공원면적'}
     return render_template('park_gu.html', menu=menu, weather=get_gangseo_weather(),
-                            option=option, mtime=mtime)
+                            option=option,option_dict=option_dict, mtime=mtime)
 @seoul_bp.route('/crime/<option>')
 def crime(option):
     menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}

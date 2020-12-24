@@ -16,7 +16,6 @@ mpl.rc('axes', unicode_minus=False)
 from my_util.gangert_weather import get_gangseo_weather
 
 
-#simple_bp = Blueprint('simple_bp', __name__, template_folder='templates')
 stock_bp = Blueprint('stock_bp', __name__)
 @stock_bp.before_app_first_request
 def before_app_first_request():
@@ -31,13 +30,13 @@ def before_app_first_request():
 @stock_bp.route('/stock', methods=['GET', 'POST'])
 def stock():
     menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':1, 'wc':0}
-    # kospi_dict,kosdaq_dict = {},{}
-    # kospi = pd.read_csv('D:/workspace/python_flask/03.DataAnalysis module/static/data/KOSPI.csv', dtype={'종목코드': str})
-    # for i in kospi.index:
-    #     kospi_dict[kospi['종목코드'][i]] = kospi['기업명'][i]
-    # kosdaq = pd.read_csv('D:/workspace/python_flask/03.DataAnalysis module/static/data/KOSDAQ.csv', dtype={'종목코드': str})
-    # for i in kosdaq.index:
-    #     kosdaq_dict[kosdaq['종목코드'][i]] = kosdaq['기업명'][i]
+    kospi_dict,kosdaq_dict = {},{}
+    kospi = pd.read_csv('D:/workspace/python_flask/03.DataAnalysis module/static/data/KOSPI.csv', dtype={'종목코드': str})
+    for i in kospi.index:
+        kospi_dict[kospi['종목코드'][i]] = kospi['기업명'][i]
+    kosdaq = pd.read_csv('D:/workspace/python_flask/03.DataAnalysis module/static/data/KOSDAQ.csv', dtype={'종목코드': str})
+    for i in kosdaq.index:
+        kosdaq_dict[kosdaq['종목코드'][i]] = kosdaq['기업명'][i]
     if request.method == 'GET':
         print(get_gangseo_weather())
         return render_template('10.stock.html', menu=menu, weather=get_gangseo_weather(),

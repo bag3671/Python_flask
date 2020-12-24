@@ -1,6 +1,6 @@
 {% extends '09.layout.html' %}
 {%block title%}서울시{% endblock %}
-{%block subtitle%}범죄{% endblock %}
+{%block subtitle%}범죄 - {{option_dict[option]}}{% endblock %}
 {% block content %}
 <div class="w-90 ml-5">
     <iframe src="{{url_for('static', filename='img/crime.html', q=mtime)}}" frameborder="1" width="1000" height="500"></iframe>
