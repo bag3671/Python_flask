@@ -25,6 +25,11 @@ js/
 css/
 img/
 !/img/favicon.ico
-01_flask/static/data/openweatherkey.txt
+/static/data/openweatherkey.txt
 openweatherkey.txt
 03.DataAnalysis module/static/data/corona_key.txt
+04.add_Classif/db/전국코로나일별.csv
+04.add_Classif/static/data/
+04.add_Classif/static/upload/A_new_hope.txt
+04.add_Classif/static/upload/Alice_mask.png
+04.add_Classif/static/upload/Alice.txt
