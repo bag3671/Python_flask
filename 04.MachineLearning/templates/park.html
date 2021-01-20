@@ -1,0 +1,39 @@
+{% extends '09.layout.html' %}
+{%block title%}서울시{% endblock %}
+{%block subtitle%}공원{% endblock %}
+{% block content %}
+<div class="row">
+    <table class="table table-borderless">
+        <form action="/seoul/park"method="POST">
+            <tr class="text-center">
+                <td><input class="form-check-input" type="radio" name="check" id="park" value="park" checked>공원명</td>
+                <td>
+                    <select class="custom-select custom-select-md" name="park_name" onchange="this.form.submit()">
+                        {% for park_name in park_names %}
+                        <option value="{{park_name}}">{{park_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+        
+            <td><input class="form-check-input" type="radio" name="check" id="gu" value="gu">지역구</td>
+            <td>
+                <select name="gu_name" class="custom-select custom-select-md" onchange="this.form.submit()">
+                    {% for gu_name in gu_names %}
+                    <option value="{{gu_name}}">{{gu_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            </tr>
+        </form>
+        <br>
+        <tr>
+            <td colspan="4">
+                <div style="text-align:center">
+                    <iframe class="text-center" src="{{url_for('static', filename='data/park_map.html',q=mtime)}}"
+                        frameborder="1" width="800" height="640"></iframe>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

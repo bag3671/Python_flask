@@ -1,0 +1,16 @@
+{% extends '09.layout.html' %}
+{%block title%}서울시{% endblock %}
+{%block subtitle%}공원 - {{option_dict[option]}}{% endblock %}
+{% block content %}
+<div class="row text-center">
+    <div class="w-95 ml-5">
+        <iframe src="{{url_for('static', filename='img/park_gu.html', q=mtime)}}" frameborder="1" width="1000" height="500"></iframe>
+    </div>
+    <tr>
+    <button class="btn btn-primary mt-3" style="margin-left: 20%;" onclick="location.href='/seoul/park_gu/area'">공원면적</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='/seoul/park_gu/count'">공원수</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='/seoul/park_gu/area_ratio'">공원면적 비율</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='/seoul/park_gu/per_person'">인당 공원면적</button>
+</tr>
+</div>
+{% endblock %}

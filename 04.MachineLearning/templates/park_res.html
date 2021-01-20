@@ -1,0 +1,32 @@
+{% extends '09.layout.html' %}
+{%block title%}서울시{% endblock %}
+{%block subtitle%}공원{% endblock %}
+{% block content %}
+<div class="row">
+   
+    <table class="table table-borderless" style="text-align: center;">
+        <tr>
+            <td>공원명</td>
+            <td colspan="4">{{park_result.park_name}}</td>
+            <td><a class="btn btn-primary" href="/park" role="button">재검색</a></td>
+        </tr>
+        <hr>
+        <tr>
+            <td>주소</td>
+            <td colspan="4">{{park_result.addr}}</td>
+        </tr>
+        
+        <tr>
+            <td>면적</td>
+            <td colspan="4">{{park_result.area}} m<sup>2</sup></td>
+        </tr>
+        <hr>
+        <tr>
+            <td></td>
+            <td>
+        <iframe src="{{url_for('static', filename='data/park_map.html',q=mtime)}}"
+        frameborder="1" width="800" height="640"></iframe>
+    </td></tr>
+    </table>
+</div>
+{% endblock %}

@@ -28,8 +28,8 @@ img/
 /static/data/openweatherkey.txt
 openweatherkey.txt
 03.DataAnalysis module/static/data/corona_key.txt
-04.add_Classif/db/전국코로나일별.csv
-04.add_Classif/static/data/
-04.add_Classif/static/upload/A_new_hope.txt
-04.add_Classif/static/upload/Alice_mask.png
-04.add_Classif/static/upload/Alice.txt
+04.MachineLearning/db/전국코로나일별.csv
+04.MachineLearning/static/data/
+04.MachineLearning/static/upload/A_new_hope.txt
+04.MachineLearning/static/upload/Alice_mask.png
+04.MachineLearning/static/upload/Alice.txt

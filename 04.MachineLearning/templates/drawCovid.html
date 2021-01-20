@@ -1,0 +1,19 @@
+{% extends '09.layout.html' %}
+{%block title%}{% endblock %}
+{%block subtitle%}코로나{% endblock %}
+{% block content %}
+<div class="row text-center">
+    <div class="w-95 ml-5 text-center">
+        <img src={% if option == 'monthly'%}"{{url_for('static', filename='img/monthly_covid.png', q=mtime)}}"
+        {% elif option == 'countMonthly'%}"{{url_for('static', filename='img/countMonthly.png', q=mtime)}}" 
+        {% elif option == 'monthArea'%}"{{url_for('static', filename='img/monthArea.png', q=mtime)}}" 
+        {% endif%}frameborder="1" width="1000" height="500">
+    </div>
+    <tr>
+    <button class="btn btn-primary mt-3" style="margin-left: 20%;" onclick="location.href='/covid/drawCovid/monthly'">코로나 증감 탑 5</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='/covid/drawCovid/countMonthly'">월별확진자수 추이</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='/covid/drawCovid/monthArea'">전국 코로나 확진자수</button>
+    <button class="btn btn-primary ml-3 mt-3" onclick="location.href='#'"></button>
+</tr>
+</div>
+{% endblock %}
