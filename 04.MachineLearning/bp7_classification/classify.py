@@ -28,20 +28,20 @@ def cancer():
         return render_template('cancer.html', menu=menu, weather=get_gangseo_weather())
     else:
         index = int(request.form['index'])
-        df = pd.read_csv('static/data/cancer_test.csv')
+        df_test = pd.read_csv('static/data/cancer_test.csv')
         scaler = MinMaxScaler()
-        scaled_test = scaler.fit_transform(df.iloc[:, :-1])
+        scaled_test = scaler.fit_transform(df_test.iloc[:, :-1])
         test_data = scaled_test[index, :].reshape(1,-1)
-        test_data_dt = df.iloc[index, :-1].values.reshape(1,-1)
-        label = df.iloc[index, -1]
-        lrc = joblib.load('static/model/cancer_lr.pkl')
+        test_data_dt = df_test.iloc[index, :-1].values.reshape(1,-1)
+        label = df_test.iloc[index, -1]
         svc = joblib.load('static/model/cancer_sv.pkl')
         dtc = joblib.load('static/model/cancer_dt.pkl')
-        pred_lr = lrc.predict(test_data)
+        lrc = joblib.load('static/model/cancer_lr.pkl')
         pred_sv = svc.predict(test_data)
         pred_dt = dtc.predict(test_data_dt)
+        pred_lr = lrc.predict(test_data)
         result = {'index':index, 'label':label,
                   'pred_lr':pred_lr[0], 'pred_sv':pred_sv[0], 'pred_dt':pred_dt[0]}
-        org = dict(zip(df.columns[:-1], df.iloc[index, :-1]))
+        org = dict(zip(df_test.columns[:-1], df_test.iloc[index, :-1]))
         return render_template('cancer_res.html', menu=menu, 
                                 res=result, org=org, weather=get_gangseo_weather())
