@@ -8,6 +8,7 @@ from bp6_wordCloud.word import word_bp
 from bp2_covid.covid import covid_bp
 from bp4_crawling.crawling import crawl_bp
 from bp7_classification.classify import classify_bp
+from bp10_clustering.cluster import clustering_bp
 
 app = Flask(__name__)
 app.secret_key = 'qwert123456'
@@ -18,6 +19,7 @@ app.register_blueprint(word_bp, url_prefix='/word')
 app.register_blueprint(covid_bp, url_prefix='/covid')
 app.register_blueprint(crawl_bp, url_prefix='/crawling')
 app.register_blueprint(classify_bp, url_prefix='/classify')
+app.register_blueprint(clustering_bp, url_prefix='/clustering')
 
 def get_weather_main():
     weather = None
