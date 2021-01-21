@@ -9,6 +9,7 @@ from bp2_covid.covid import covid_bp
 from bp4_crawling.crawling import crawl_bp
 from bp7_classification.classify import classify_bp
 from bp10_clustering.cluster import clustering_bp
+from bp8_regression.regression import rgrs_bp
 
 app = Flask(__name__)
 app.secret_key = 'qwert123456'
@@ -20,6 +21,7 @@ app.register_blueprint(covid_bp, url_prefix='/covid')
 app.register_blueprint(crawl_bp, url_prefix='/crawling')
 app.register_blueprint(classify_bp, url_prefix='/classify')
 app.register_blueprint(clustering_bp, url_prefix='/clustering')
+app.register_blueprint(rgrs_bp, url_prefix='/rgrs')
 
 def get_weather_main():
     weather = None
