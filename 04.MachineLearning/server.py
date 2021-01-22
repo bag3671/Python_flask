@@ -1,15 +1,16 @@
 from flask import Flask, render_template, session
 from datetime import timedelta,datetime
 from my_util.gangert_weather import *
-from bp5_stock.stock import stock_bp
 from bp1_seoul.seoul import seoul_bp
-from bp3_carto.carto import carto_bp
-from bp6_wordCloud.word import word_bp
 from bp2_covid.covid import covid_bp
+from bp3_carto.carto import carto_bp
 from bp4_crawling.crawling import crawl_bp
+from bp5_stock.stock import stock_bp
+from bp6_wordCloud.word import word_bp
 from bp7_classification.classify import classify_bp
+from bp8_advanced.advanced import advanced_bp
+from bp9_regression.regression import rgrs_bp
 from bp10_clustering.cluster import clustering_bp
-from bp8_regression.regression import rgrs_bp
 
 app = Flask(__name__)
 app.secret_key = 'qwert123456'
@@ -22,6 +23,7 @@ app.register_blueprint(crawl_bp, url_prefix='/crawling')
 app.register_blueprint(classify_bp, url_prefix='/classify')
 app.register_blueprint(clustering_bp, url_prefix='/clustering')
 app.register_blueprint(rgrs_bp, url_prefix='/rgrs')
+app.register_blueprint(advanced_bp, url_prefix='/advanced')
 
 def get_weather_main():
     weather = None
@@ -38,7 +40,7 @@ def get_weather_main():
 @app.route('/')
 def index():
     menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
-    return render_template('09.main.html',weather=get_weather_main(), menu=menu)
+    return render_template('09.main.html',weather=get_gangseo_weather(), menu=menu)
 
 if __name__ == '__main__':
     app.run(debug=True)

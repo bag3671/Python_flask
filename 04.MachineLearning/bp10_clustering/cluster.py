@@ -14,8 +14,6 @@ from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 import os
 
-
-
 clustering_bp = Blueprint('clustering_bp', __name__)
 
 def get_weather_main():
