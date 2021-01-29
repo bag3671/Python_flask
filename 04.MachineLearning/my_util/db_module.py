@@ -16,7 +16,22 @@ def get_region_daily(date):
     
     cur.close()
     conn.close()
+    print(rows)
     return rows
+
+def write_region(params):
+    conn = sqlite3.connect('./db/covid/test.db')
+    cur = conn.cursor()
+
+    sql = '''insert into region(stdDay, deathCnt, defCnt, gubun, incDec, isolClearCnt,
+             isolIngCnt, localOccCnt, overFlowCnt, qurRate) values(?,?,?,?,?,?,?,?,?,?);'''
+    cur.execute(sql, params)
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    return
+    
 
 def get_agender_daily(date):
     conn = sqlite3.connect('./db/covid/test.db')
@@ -29,6 +44,19 @@ def get_agender_daily(date):
     cur.close()
     conn.close()
     return rows
+
+def write_agender(params):
+    conn = sqlite3.connect('./db/covid/test.db')
+    cur = conn.cursor()
+
+    sql = '''insert into agender(stdDay, confCase, confCaseRate, death, deathRate,
+             criticalRate, gubun, seq, updateDt) values(?,?,?,?,?,?,?,?,?);'''
+    cur.execute(sql, params)
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    return
 
 def select_covid_incDec():
     conn = sqlite3.connect('./db/covid/test.db')

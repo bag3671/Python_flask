@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, g
-from flask import current_app
+from flask import current_app,redirect,url_for
 from werkzeug.utils import secure_filename
 from datetime import timedelta,datetime
 import pandas as pd
@@ -7,6 +7,8 @@ import os
 from my_util.gangert_weather import *
 import my_util.drawKorea as dk
 import my_util.db_module as dm
+import my_util.covid_util as cu
+
 
 
 covid_bp = Blueprint('covid_bp', __name__)
@@ -31,7 +33,16 @@ def daily():
 
     return render_template('daily.html', menu=menu, weather=get_weather_main(),
                             date=date, rows=rows)
-    
+
+@covid_bp.route('/update_daily/<date>')    
+def update_daily(date):
+    rows = dm.get_region_daily(date)
+    print('date',date)
+    if len(rows) == 0:
+        cu.get_region_by_date(date)
+
+    return redirect(url_for('covid_bp.daily')+f'?date={date}')
+
 @covid_bp.route('/agender')
 def agender():
     menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
@@ -40,7 +51,15 @@ def agender():
 
     return render_template('agender.html', menu=menu, weather=get_weather_main(),
                             date=date, rows=rows)
-    
+
+@covid_bp.route('/update_agender/<date>')
+def update_agender(date):
+    rows = dm.get_agender_daily(date)
+    if len(rows) == 0:
+        cu.get_agender_by_date(date)
+
+    return redirect(url_for('covid_bp.agender')+f'?date={date}')
+
 @covid_bp.route('/drawCovid/<option>')
 def drawCovid(option):
     menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
