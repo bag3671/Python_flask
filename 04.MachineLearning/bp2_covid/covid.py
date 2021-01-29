@@ -25,9 +25,9 @@ def get_weather_main():
         current_app.permanent_session_lifetime = timedelta(minutes=60)
     return weather
 
+menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
 @covid_bp.route('/daily')
 def daily():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     date = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
     rows = dm.get_region_daily(date)
 
@@ -45,7 +45,6 @@ def update_daily(date):
 
 @covid_bp.route('/agender')
 def agender():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     date = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
     rows = dm.get_agender_daily(date)
 
@@ -62,7 +61,6 @@ def update_agender(date):
 
 @covid_bp.route('/drawCovid/<option>')
 def drawCovid(option):
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':1, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     date = request.args.get('date', datetime.now().strftime('%Y-%m-%d'))
     rows = dm.select_covid_incDec()
     if option == 'monthly': 

@@ -19,10 +19,10 @@ def get_weather_main():
         session.permanent = True
         current_app.permanent_session_lifetime = timedelta(minutes=60)
     return weather
+menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':1, 'st':0, 'wc':0}
 
 @crawl_bp.route('/food', methods=['GET', 'POST'])
 def food():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':1, 'st':0, 'wc':0}
     if request.method == 'GET':
         place = request.args.get('place', '발산역')
         rest_list = cu.siksin(place)
@@ -34,7 +34,6 @@ def food():
 
 @crawl_bp.route('/book')
 def book():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':1, 'st':0, 'wc':0}
     book_list = cu.interpark()
     return render_template('book.html', menu=menu, weather=get_weather_main(),
                             book_list=book_list)

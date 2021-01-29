@@ -33,3 +33,8 @@ openweatherkey.txt
 04.MachineLearning/static/upload/A_new_hope.txt
 04.MachineLearning/static/upload/Alice_mask.png
 04.MachineLearning/static/upload/Alice.txt
+*.pkl
+/model/
+04.MachineLearning/model/
+
+

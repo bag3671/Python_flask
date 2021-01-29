@@ -20,10 +20,10 @@ def get_weather_main():
         session.permanent = True
         current_app.permanent_session_lifetime = timedelta(minutes=60)
     return weather
+menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':1, 'cr':0, 'st':0, 'wc':0}
 
 @carto_bp.route('/pop/<option>')
 def population(option):
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':1, 'cr':0, 'st':0, 'wc':0}
     df_pop = pd.read_csv('./static/data/population.csv')
     column_dict = {'crisis_area':'소멸위기지역', 'crisis_ratio':'소멸비율'}
     color_dict = {'crisis_area':'Reds', 'crisis_ratio':'PuBu'}
@@ -35,7 +35,6 @@ def population(option):
 
 @carto_bp.route('/coffee', methods=['GET', 'POST'])
 def coffee():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':1, 'cr':0, 'st':0, 'wc':0}
     if request.method == 'GET':
         return render_template('coffee.html', menu=menu, weather=get_weather_main())
     else:

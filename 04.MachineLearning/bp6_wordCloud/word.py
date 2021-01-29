@@ -20,10 +20,10 @@ def get_weather_main():
         session.permanent = True
         current_app.permanent_session_lifetime = timedelta(minutes=60)
     return weather
-
+menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':1}
 @word_bp.route('/text', methods=['GET', 'POST'])
 def text():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':1}
+   
     if request.method == 'GET':
         return render_template('text.html', menu=menu, weather=get_weather_main())
     else:
@@ -55,7 +55,6 @@ def text():
 
 @word_bp.route('/sports')
 def sports_news():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':1}
     sports_wordCloud()
     text_file = os.path.join(current_app.root_path, 'static/data/sports.txt')
 

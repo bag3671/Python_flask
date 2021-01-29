@@ -21,12 +21,13 @@ def get_weather_main():
         session.permanent = True
         current_app.permanent_session_lifetime = timedelta(minutes=60)
     return weather
+menu = {'ho':0, 'da':0, 'ml':10, 
+            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
+            'cf':1, 'ac':0, 're':0, 'cu':0}
 
 @classify_bp.route('/cancer', methods=['GET', 'POST'])
 def cancer():
-    menu = {'ho':0, 'da':0, 'ml':10, 
-            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':1, 'ac':0, 're':0, 'cu':0}
+    
     if request.method == 'GET':
         return render_template('cancer.html', menu=menu, weather=get_weather_main())
     else:
@@ -50,9 +51,7 @@ def cancer():
                             
 @classify_bp.route('/titanic', methods=['GET', 'POST'])
 def titanic():
-    menu = {'ho':0, 'da':0, 'ml':10, 
-            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':1, 'ac':0, 're':0, 'cu':0}
+    
     if request.method == 'GET':
         return render_template('titanic_cls.html', menu=menu, weather=get_weather_main())
     else:
@@ -85,9 +84,7 @@ def titanic():
 
 @classify_bp.route('/pima', methods=['GET', 'POST'])
 def pima():
-    menu = {'ho':0, 'da':0, 'ml':10, 
-            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':1, 'ac':0, 're':0, 'cu':0}
+    
     if request.method == 'GET':
         return render_template('pima_cls.html', menu=menu, weather=get_weather_main())
     else:
@@ -111,9 +108,7 @@ def pima():
 
 @classify_bp.route('/iris', methods=['GET', 'POST'])
 def iris():
-    menu = {'ho':0, 'da':0, 'ml':10, 
-            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':1, 'ac':0, 're':0, 'cu':0}
+    
     if request.method == 'GET':
         return render_template('iris_cls.html', menu=menu, weather=get_weather_main())
     else:
@@ -141,9 +136,7 @@ def iris():
 
 @classify_bp.route('/wine', methods=['GET', 'POST'])
 def wine():
-    menu = {'ho':0, 'da':0, 'ml':10, 
-            'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':1, 'ac':0, 're':0, 'cu':0}
+    
     if request.method == 'GET':
         return render_template('wine_cls.html', menu=menu, weather=get_weather_main())
     else:

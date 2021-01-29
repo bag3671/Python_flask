@@ -17,10 +17,10 @@ from my_util.gangert_weather import get_gangseo_weather
 
 #simple_bp = Blueprint('simple_bp', __name__, template_folder='templates')
 seoul_bp = Blueprint('seoul_bp', __name__)
+menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
 
 @seoul_bp.route('/park', methods=['GET', 'POST'])
 def park():
-        menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
         df = pd.read_csv("./static/data/park2.csv")
         if request.method == 'GET': 
             gu_names = sorted(df['지역'].unique().tolist())
@@ -64,7 +64,6 @@ def park():
                 return render_template("park_res2.html",menu=menu, weather=get_gangseo_weather(),gu_name=gu_name,mtime=mtime)
 @seoul_bp.route('/park_gu/<option>')
 def park_gu(option):
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     park_new = pd.read_csv('./static/data/park_info.csv')
     park_gu = pd.read_csv('./static/data/park_gu.csv')
     park_gu.set_index('지역', inplace=True)
@@ -109,7 +108,6 @@ def park_gu(option):
                             option=option,option_dict=option_dict, mtime=mtime)
 @seoul_bp.route('/crime/<option>')
 def crime(option):
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':1, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     crime = pd.read_csv('./static/data/crime.csv', index_col='구별')
     police = pd.read_csv('./static/data/police.csv')
     geo_str = json.load(open('./static/data/02. skorea_municipalities_geo_simple.json',
