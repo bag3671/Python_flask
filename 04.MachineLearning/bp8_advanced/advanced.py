@@ -7,6 +7,7 @@ from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
 import joblib
 import pandas as pd
+from konlpy.tag import Okt
 import os
 from my_util.gangert_weather import *
 
@@ -29,6 +30,7 @@ menu = {'ho':0, 'da':0, 'ml':10,
 
 @advanced_bp.before_app_first_request
 def before_app_first_request():
+    global naver_count_lr, naver_count_nb, naver_tfidf_lr, naver_tfidf_nb
     global imdb_count_lr, imdb_tfidf_lr
     global news_count_lr, news_tfidf_lr, news_tfidf_sv
     print('============ Advanced Blueprint before_app_first_request() ==========')
@@ -37,6 +39,11 @@ def before_app_first_request():
     news_count_lr = joblib.load('static/model/news_count_lr.pkl')
     news_tfidf_lr = joblib.load('static/model/news_tfidf_lr.pkl')
     news_tfidf_sv = joblib.load('static/model/news_tfidf_sv.pkl')
+    naver_count_lr = joblib.load('static/model/naver_count_lr.pkl')
+    naver_count_nb = joblib.load('static/model/naver_count_nb.pkl')
+    naver_tfidf_lr = joblib.load('static/model/naver_tfidf_lr.pkl')
+    naver_tfidf_nb = joblib.load('static/model/naver_tfidf_nb.pkl')
+    
 
 @advanced_bp.route('/digits', methods=['GET', 'POST'])
 def digits():
@@ -124,4 +131,31 @@ def imdb():
         pred_tl = '긍정' if imdb_tfidf_lr.predict(test_data)[0] else '부정'
         result_dict = {'label':label, 'pred_cl':pred_cl, 'pred_tl':pred_tl}
         return render_template('imdb_res.html', menu=menu, review=test_data[0],
+                                res=result_dict, weather=get_weather_main())
+                    
+@advanced_bp.route('/naverMovie', methods=['GET', 'POST'])
+def naverMovie():
+    if request.method == 'GET':
+        return render_template('naverMovie.html', menu=menu, weather=get_weather_main())
+    else:
+        stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다','을']
+        okt = Okt()
+        index = int(request.form['index'] or 0)
+        # df_test = pd.read_table('static/data/naver/test_df.tsv')
+        df_test = pd.read_csv('static/data/naver/test_df.tsv',sep='\t')
+        test_data = []
+        for sentence in df_test['document'][index]:
+            temp_X = []
+            temp_X = okt.morphs(sentence, stem=True)
+            temp_X = ' '.join([word for word in temp_X if not word in stopwords]) 
+            test_data.append(temp_X)
+        label = '긍정' if df_test.label[index] else '부정'
+
+        pred_c_lr = '긍정' if naver_count_lr.predict(test_data)[0] else '부정'
+        pred_c_nb = '긍정' if naver_count_nb.predict(test_data)[0] else '부정'
+        pred_t_lr = '긍정' if naver_tfidf_lr.predict(test_data)[0] else '부정'
+        pred_t_nb = '긍정' if naver_tfidf_nb.predict(test_data)[0] else '부정'
+        result_dict = {'label':label, 'pred_c_lr':pred_c_lr, 'pred_c_nb':pred_c_nb,
+                        'pred_t_lr':pred_t_lr,'pred_t_nb':pred_t_nb}
+        return render_template('naverMovie_res.html', menu=menu, review=df_test['document'][index],
                                 res=result_dict, weather=get_weather_main())
