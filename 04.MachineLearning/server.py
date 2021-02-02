@@ -11,6 +11,7 @@ from bp7_classification.classify import classify_bp
 from bp8_advanced.advanced import advanced_bp
 from bp9_regression.regression import rgrs_bp
 from bp10_clustering.cluster import clustering_bp
+from bpa_nat_lang.nat_lang import lang_bp
 
 app = Flask(__name__)
 app.secret_key = 'qwert123456'
@@ -24,6 +25,7 @@ app.register_blueprint(classify_bp, url_prefix='/classify')
 app.register_blueprint(clustering_bp, url_prefix='/clustering')
 app.register_blueprint(rgrs_bp, url_prefix='/rgrs')
 app.register_blueprint(advanced_bp, url_prefix='/advanced')
+app.register_blueprint(lang_bp, url_prefix='/ai')
 
 def get_weather_main():
     weather = None

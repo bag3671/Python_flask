@@ -1,0 +1,35 @@
+{% extends '09.layout.html' %}
+{%block title%}번역{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <table class="table table-striped">
+            <tr>
+                <td>text</td>
+                <td>{{text}}</td>
+            </tr>
+            <tr>
+                <td>네이버 번역</td>
+                <td><strong>{{naver}}</strong></td>
+            </tr>
+            <tr>
+                <td>카카오번역</td>
+                <td><strong>{{kakao}}</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-primary" 
+                            onclick="location.href='/ai/trans'">재실행</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-1"></div>
+</div>
+{% endblock %}
+{% block stylesheet %}
+<style>
+    td { text-align: center; }
+</style>
+{% endblock %}

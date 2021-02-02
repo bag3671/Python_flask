@@ -36,5 +36,5 @@ openweatherkey.txt
 *.pkl
 /model/
 04.MachineLearning/model/
-
-
+keys/
+voice/
