@@ -41,7 +41,7 @@ def get_weather_main():
 
 @app.route('/')
 def index():
-    menu = {'ho':0, 'da':1, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
+    menu = {'ho':1, 'da':0, 'ml':0, 'se':0, 'co':0, 'cg':0, 'cr':0, 'st':0, 'wc':0}
     return render_template('09.main.html',weather=get_weather_main(), menu=menu)
 
 if __name__ == '__main__':

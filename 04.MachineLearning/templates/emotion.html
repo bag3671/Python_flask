@@ -1,0 +1,28 @@
+{% extends '09.layout.html' %}
+{%block title%}언어감지 감성분석 다중 언어{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <form action="/ai/emotion" method="post">
+            <table class="table table-borderless">
+                <tr>
+                    <td><textarea name="text" cols="80" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary mr-2">실행</button>
+                        <button type="reset" class="btn btn-secondary">취소</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="col-1"></div>
+</div>
+{% endblock %}
+{% block stylesheet %}
+<style>
+    td { text-align: center; }
+</style>
+{% endblock %}
