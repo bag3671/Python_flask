@@ -153,6 +153,7 @@ def emotion():
         # result = requests.post(url, data=val, headers=headers).json()
         # tr_text = result['message']['result']['translatedText']
         
+        #카카오 번역으로 다중언어가 가능하게
         with open('static/keys/kakaoaikey.txt') as kfile:
             kai_key = kfile.read(200)
         url = 'https://kapi.kakao.com/v1/translation/translate'
@@ -163,7 +164,6 @@ def emotion():
         else:
             data = {"src_lang": lang, "target_lang": 'en', "query": text}
         response = requests.post(url, headers=headers, data=data)
-        print(response.json())
         tr_text = response.json()['translated_text'][0][0]
         
 
