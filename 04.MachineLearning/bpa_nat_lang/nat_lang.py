@@ -24,7 +24,7 @@ def get_weather_main():
 global menu
 menu = {'ho':0, 'da':0, 'ml':1, 
             'se':0, 'co':0, 'cg':0, 'cr':0, 'wc':0,
-            'cf':0, 'ac':0, 're':0, 'cu':0}
+            'cf':0, 'ac':0, 're':0, 'cu':0,'nl':1}
 
 @lang_bp.before_app_first_request
 def before_app_first_request():
