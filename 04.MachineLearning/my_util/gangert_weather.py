@@ -2,7 +2,7 @@ import requests
 from urllib.parse import urlparse
 
 def get_gangseo_weather(lng = 126.849532173376, lat = 37.5509655144007):
-    key_fd = open('D:/workspace/python_flask/01_flask/static/data/openweatherkey.txt',mode='r')
+    key_fd = open('D:/workspace/python_flask/04.MachineLearning/static/data/openweatherkey.txt',mode='r')
     openweather_key = key_fd.read(200)
     key_fd.close()
     lng = 126.849532173376

@@ -1,0 +1,37 @@
+{% extends '09.layout.html' %}
+{%block title%}이미지 결과{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <tr style="background-color: beige;">
+                <td colspan="{{result_dic.num}}">{{result_dic.img_name}}</td>
+            </tr>
+            <tr>
+                {% for i in range(result_dic.num) %}
+                    <td><strong>{{result_dic.name[i]}} : {{result_dic.result[i]}}</strong></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td colspan="{{result_dic.num}}">
+                    <img src="{{url_for('static', filename='upload/'+'img.jpg', q=mtime)}}"
+                             alt="이미지">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="{{result_dic.num}}" style="text-align: center;">
+                    <button class="btn btn-primary"
+                            onclick="location.href='/deep-learning/img'">재실행</button>
+                </td>
+            </tr>
+        </table>		
+    </div>
+</div>
+{% endblock %}
+{% block stylesheet %}
+<style>
+    td { text-align: center; }
+    /* Make the image fully responsive */
+    td img { width: 60%; }
+</style>
+{% endblock %}

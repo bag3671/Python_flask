@@ -11,17 +11,17 @@
     <title>프로젝트</title>
     {% endif %}
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='fontawesome-free-5.15.1-web/css/all.min.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon1.ico')}}">
     <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     {% block stylesheet %}{% endblock %}
 </head>
 
@@ -38,10 +38,10 @@
                         <a class="nav-link " href="/">홈</a>
                     </li>
                     <li class="nav-item {% if menu.da %}active{% endif %}">
-                        <a class="nav-link " href="">데이터 분석</a>
+                        <a class="nav-link " href="/seoul/park">데이터 분석</a>
                     </li>
                     <li class="nav-item {% if menu.ml %}active{% endif %}">
-                        <a class="nav-link " href="">인공지능</a>
+                        <a class="nav-link " href="/deep-leraning/img">인공지능</a>
                     </li>
                 </ul>
             </div>
@@ -160,6 +160,11 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/ai/emotion">외국어 감성분석</a>
                         </div>
+                    </li>
+                    <div class="dropdown-divider"></div>
+                    <li class="nav-item">
+                        <a class="nav-link {% if menu.im %}active{% endif %}"
+                            href="{% if menu.im %}#{% else %}/deep-learning/img{% endif %}">이미지</a>
                     </li>
                     <div class="dropdown-divider"></div>
                 </ul>

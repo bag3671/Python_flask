@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, escape,request,Blueprint,current_app
-from fbprophet import Prophet
+# from fbprophet import Prophet
 from datetime import timedelta,datetime
 import os
 import logging
