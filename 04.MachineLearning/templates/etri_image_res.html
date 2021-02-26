@@ -11,11 +11,14 @@
             </tr>
             <tr>
                 <td>
-                    {% for name in names %}
-                        {% if name != names[-1] %}
-                            {{name + '123 '}}
+                    {% for i in num %}
+                        {% if i == num[-1] %}
+                            {{names[i]}}
                         {% else %}
-                            {{name}}
+                            {{names[i] + ', '}}
+                        {% endif %}
+                        {% if (i+1) % 6 == 0 %}
+                            <br>
                         {% endif %}
                     {% endfor %}
                 </td>

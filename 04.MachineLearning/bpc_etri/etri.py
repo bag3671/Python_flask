@@ -74,4 +74,5 @@ def img():
             draw.rectangle(((x,y),(x+w,y+h)),outline=(255,0,0),width=2)
         image.save(os.path.join(current_app.root_path, 'static/upload/') +'etri.jpg')
         mtime = int(os.stat(file_img).st_mtime)
-        return render_template('etri_image_res.html', menu=menu, weather=get_weather_main(),mtime=mtime,names=name_list)
+        num = list(range(len(data_list)))
+        return render_template('etri_image_res.html', menu=menu, weather=get_weather_main(),mtime=mtime,names=name_list,num = num)
