@@ -1,0 +1,43 @@
+{% extends '09.layout.html' %}
+{%block title%}검출 결과{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <tr>
+                <td colspan="4">
+                    <img src="{{url_for('static', filename='upload/'+'etri.jpg', q=mtime)}}" alt="이미지">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% for name in names %}
+                        {% if name != names[-1] %}
+                            {{name + '123 '}}
+                        {% else %}
+                            {{name}}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    <button class="btn btn-primary" onclick="location.href='/etri/img'">재실행</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block stylesheet %}
+<style>
+    td {
+        text-align: center;
+    }
+
+    /* Make the image fully responsive */
+    td img {
+        width: 60%;
+    }
+</style>
+{% endblock %}

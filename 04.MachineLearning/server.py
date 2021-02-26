@@ -13,6 +13,7 @@ from bp9_regression.regression import rgrs_bp
 from bp10_clustering.cluster import clustering_bp
 from bpa_nat_lang.nat_lang import lang_bp
 from bpb_deep_learning.deep_learning import deep_bp
+from bpc_etri.etri import etri_bp
 
 app = Flask(__name__)
 app.secret_key = 'qwert123456'
@@ -28,6 +29,7 @@ app.register_blueprint(rgrs_bp, url_prefix='/rgrs')
 # app.register_blueprint(advanced_bp, url_prefix='/advanced')
 app.register_blueprint(lang_bp, url_prefix='/ai')
 app.register_blueprint(deep_bp, url_prefix='/deep-learning')
+app.register_blueprint(etri_bp, url_prefix='/etri')
 
 def get_weather_main():
     weather = None

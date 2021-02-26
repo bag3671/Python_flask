@@ -1,0 +1,37 @@
+{% extends '09.layout.html' %}
+{%block title%}공공 api etri 이미지 객체 검출{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <form action="/etri/img" method="POST" enctype="multipart/form-data">
+            <table class="table table-borderless">
+                <tr>
+                    <td><label for="img">이미지</label></td>
+                    <td>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="img" name="img">
+                            <label class="custom-file-label" for="img">검출 할 img 파일 선택</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit" class="btn btn-primary mr-2">실행</button>
+                        <button type="reset" class="btn btn-secondary">취소</button>
+                    </td>
+                </tr>
+            </table>		
+        </form>
+    </div>
+    <div class="col-2"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+{% endblock %}
